@@ -15,18 +15,6 @@
 			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
 		</Content>
 	</ItemGroup>
-	
-	<ItemGroup>
-	  <Compile Remove="Browser\**" />
-	  <Compile Remove="CefGlue\**" />
-	  <Content Remove="Browser\**" />
-	  <Content Remove="CefGlue\**" />
-	  <EmbeddedResource Remove="Browser\**" />
-	  <EmbeddedResource Remove="CefGlue\**" />
-	  <None Remove="Browser\**" />
-	  <None Remove="CefGlue\**" />
-	  <Compile Remove="AppBuilder.Cef.cs" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="System.Drawing.Common" Version="7.0.0" />
