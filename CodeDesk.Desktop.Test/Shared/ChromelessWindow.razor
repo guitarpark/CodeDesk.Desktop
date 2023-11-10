@@ -1,0 +1,93 @@
+﻿@namespace CodeDesk.Desktop
+@inject Microsoft.JSInterop.IJSRuntime JSRuntime;
+<div id="layout-main">
+    <div id="window-header">
+        <div id="window-header-title">
+            <img src="@(Logo)" />
+            <span class="title">@(Title)</span>
+        </div>
+        <div id="window-header-drag" @ondblclick="@(()=>MaximizedRestore())">
+        </div>
+        <div id="window-header-tools">
+            <i @onclick="OnClickHandler">
+                <span class="icon iconfont icon-infomation"></span>
+            </i>
+            <i @onclick="@(()=>WindowCommand(SystemCommandType.Minimize))">
+                <span class="icon iconfont icon-minimize"></span>
+            </i>
+            @if (IsHiddenRestore)
+            {
+                <i @onclick="@(()=>WindowCommand(SystemCommandType.Maximized))">
+                    <span class="icon iconfont icon-maximizing"></span>
+                </i>
+            }
+            else
+            {
+                <i @onclick="@(()=>WindowCommand(SystemCommandType.Restore))">
+                    <span class="icon iconfont icon-restore"></span>
+                </i>
+            }
+            <i @onclick="@(()=>WindowCommand(SystemCommandType.Close))">
+                <span class="icon iconfont icon-close"></span>
+            </i>
+
+        </div>
+    </div>
+
+    <CascadingValue Value="@this" IsFixed="true">
+        @ChildContent
+    </CascadingValue>
+</div>
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter] public EventCallback<MouseEventArgs> OnSetting { get; set; }
+
+    [Parameter]
+    public RenderFragment HeaderContent { get; set; }
+    [Parameter]
+    public RenderFragment Tools { get; set; }
+    [Parameter]
+    public string Logo { get; set; }
+    [Parameter]
+    public string Title { get; set; }
+    private bool IsHiddenRestore { get; set; } = true;
+    protected virtual async Task OnClickHandler(MouseEventArgs ev)
+    {
+        await OnSetting.InvokeAsync(ev);
+    }
+    internal void WindowCommand(SystemCommandType command)
+    {
+        if (command == SystemCommandType.Maximized)
+        {
+            IsHiddenRestore = false;
+        }
+        else if (command == SystemCommandType.Restore)
+        {
+            IsHiddenRestore = true;
+        }
+        JSRuntime.WindowCommand(command);
+        this.StateHasChanged();
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+            return;
+        await base.OnAfterRenderAsync(firstRender);
+
+        JSRuntime.InitDrag("#window-header-drag");
+    }
+    internal void MaximizedRestore()
+    {
+        if (IsHiddenRestore)
+        {
+            IsHiddenRestore = false;
+            JSRuntime.WindowCommand(SystemCommandType.Maximized);
+        }
+        else
+        {
+            IsHiddenRestore = true;
+            JSRuntime.WindowCommand(SystemCommandType.Restore);
+        }
+    }
+}

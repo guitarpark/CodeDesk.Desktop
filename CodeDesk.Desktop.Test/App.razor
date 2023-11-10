@@ -1,0 +1,11 @@
+﻿<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+    </Found>
+    <NotFound>
+        <PageTitle>404</PageTitle>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <p role="alert">当前页面不存在</p>
+        </LayoutView>
+    </NotFound>
+</Router>

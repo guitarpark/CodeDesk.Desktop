@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<SatelliteResourceLanguages>zh-cn</SatelliteResourceLanguages>
+		<Version>1.$([System.DateTime]::get_Now().ToString('yy')).$([System.DateTime]::get_Now().ToString('MMdd')).$([System.DateTime]::get_Now().ToString('HHmm'))</Version>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+	</PropertyGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="wwwroot\**" />
+		<Content Update="wwwroot\**">
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Compile Remove="Browser\**" />
+	  <Compile Remove="CefGlue\**" />
+	  <Content Remove="Browser\**" />
+	  <Content Remove="CefGlue\**" />
+	  <EmbeddedResource Remove="Browser\**" />
+	  <EmbeddedResource Remove="CefGlue\**" />
+	  <None Remove="Browser\**" />
+	  <None Remove="CefGlue\**" />
+	  <Compile Remove="AppBuilder.Cef.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="System.Drawing.Common" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.19" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView" Version="6.0.19" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+
+
+		<PackageReference Include="WebView2.NativeAssets.Win32" Version="1.0.1518.46" />
+	</ItemGroup>
+
+</Project>

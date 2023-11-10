@@ -1,0 +1,276 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id="inSlider" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#inSlider" data-slide-to="0" class="active"></li>
+        <li data-target="#inSlider" data-slide-to="1"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>
+                        全平台桌面端框架<br />
+                        windows,linux,macOS<br />
+                        支持国产操作系统<br />
+                        一套代码，全平台展示
+                    </h1>
+                    <p>CodeDesk Desktop是使用Web技术作为展示的新型桌面开发框架</p>
+                </div>
+                <div class="carousel-image wow zoomIn">
+                    <img src="images/laptop.png" alt="laptop" />
+                </div>
+            </div>
+            <div class="header-back one"></div>
+
+        </div>
+        <div class="carousel-item">
+            <div class="container">
+                <div class="carousel-caption blank">
+                    <h1>完美的Web支持 <br /> 丰富的组件选择</h1>
+                    <p>支持原生html,Blazor,Vue。。。</p>
+                </div>
+            </div>
+            <!-- Set background for slide in css -->
+            <div class="header-back two"></div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#inSlider" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only"><<</span>
+    </a>
+    <a class="carousel-control-next" href="#inSlider" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">>></span>
+    </a>
+</div>
+
+<section id="features" class="container services">
+    <div class="row">
+        <div class="col-sm-3">
+            <h2>多平台支持</h2>
+            <p>
+                CodeDesk帮助开发者创建适用于主要桌面平台的应用程序。<br />
+                它提供了跨平台的能力，使开发者能够使用几乎所有现有的前端框架来构建应用程序。<br />
+                无论是Html,Blazor,Vue,React还是Angular等前端框架，都可以与CodeDesk一起使用。<br />
+                这种多平台支持使得开发者能够在不同的桌面操作系统上快速构建和维护应用程序。
+            </p>
+        </div>
+        <div class="col-sm-3">
+            <h2>基于.NetCore支持： </h2>
+            <p>
+                CodeDesk基于.NetCore开发。<br />
+                可以使用现有丰富的.NetCore的组件库，简化大量的基础组件。<br />
+                具有很好的可扩展性，支持多种扩展方式，如中间件、过滤器、插件等，可以非常方便开发者扩展应用程序的功能。<br />
+                具有一系列的安全优点，可以帮助开发人员构建更加安全和可靠的应用程序，避免常见的安全问题和漏洞，如：身份验证、授权、输入验证、防止跨站点脚本攻击等。
+            </p>
+        </div>
+        <div class="col-sm-3">
+            <h2>体积小、高性能</h2>
+            <p>
+                CodeDesk安装包体积小，相比其他安装包动辄上百兆，使用CodeDesk开发的应用安装包最小可以做到不到 10MB。<br />
+                使用操作系统内置的基于 Chromium 或 WebKit 的浏览器控件，适用于 Windows、macOS 和 Linux。<br />
+                利用Blazor的热更新，使得开发效率大幅度提高，无需繁琐的调试即可看到最终的呈现效果。<br />
+            </p>
+        </div>
+        <div class="col-sm-3">
+            <h2>开源</h2>
+            <p>
+                CodeDesk是一个开源项目，它依赖于社区的参与和贡献。<br />
+                开源意味着任何人都可以查看、使用和修改源代码。<br />
+                这种透明性和开放性有助于社区合作和创造力的发挥。<br />
+                CodeDesk的开源性也使得它可以被认证为“真正”的开源应用程序。
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="navy-line"></div>
+                <h1>CodeDesk 入门</h1>
+                <p>
+                    要开始使用，只需按照以下说明操作即可。有适用于 Blazor、Html的示例。我们在示例应用中添加了一些有用的注释来解释所有内容。
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <code style="width: 100%;background-color: black;color: white; height: 400px;overflow-y: scroll;">
+
+                <h3>&nbsp;try</h3><h3>&nbsp;{</h3><h3>&nbsp; &nbsp; &nbsp;AppDomain.CurrentDomain.UnhandledException += (s, e) =&gt;</h3><h3>&nbsp; &nbsp; &nbsp;{</h3><h3>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Application.MessageBox.ShowError(IntPtr.Zero, e.ToString());</h3><h3>&nbsp; &nbsp; &nbsp;};</h3><h3>&nbsp; &nbsp; &nbsp;var builder = Application.Initialize();</h3><h3>&nbsp; &nbsp; &nbsp;Application.MessageReceivedHandler = new Action&lt;string&gt;((message) =&gt;</h3><h3>&nbsp; &nbsp; &nbsp;{</h3><h3>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;System.Diagnostics.Debug.WriteLine("customMessage"+message);</h3><h3>&nbsp; &nbsp; &nbsp;});</h3><h3>&nbsp; &nbsp; &nbsp;Application.BackgroundColor = "#f5f5f5";</h3><h3>&nbsp; &nbsp; &nbsp;Application.AppName = "新建跨平台程序";</h3><h3>&nbsp; &nbsp; &nbsp;Application.Icon = "icon-drak.png";</h3><h3>&nbsp; &nbsp; &nbsp;builder.RegisterResource(typeof(Program));</h3><h3>&nbsp; &nbsp; &nbsp;var splashConfig = new SplashConfig()</h3><h3>&nbsp; &nbsp; &nbsp;{</h3><h3>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Splash = "splash.png",</h3><h3>&nbsp; &nbsp; &nbsp;};</h3><h3>&nbsp; &nbsp; &nbsp;var windowConfig = new WindowConfig()</h3><h3>&nbsp; &nbsp; &nbsp;{</h3><h3>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Chromeless = true,</h3><h3>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;MinimumSize = new System.Drawing.Size(400, 400),</h3><h3>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;IsDebug = true,</h3><h3>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;WebAppType = WebAppType.Blazor,//还可以设置Local,Http，同时需要修改url入口地址</h3><h3>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Url = "http://localhost/blazorindex.html" //local_left_index.html,local_top_index.html</h3><h3>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;BlazorComponent = typeof(App),//blazor必须设置</h3><h3>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;BlazorSelector = "#app",//blazor必须设置</h3><h3>&nbsp; &nbsp; &nbsp;};</h3><h3>&nbsp; &nbsp; &nbsp;builder.CreateWindow(splashConfig, windowConfig);</h3><h3>&nbsp; &nbsp; &nbsp;builder.Run();</h3><h3>&nbsp;}</h3><h3>&nbsp;catch (Exception ex)</h3><h3>&nbsp;{</h3><h3>&nbsp; &nbsp; &nbsp;Application.MessageBox.ShowError(IntPtr.Zero, ex.Message);</h3><h3>&nbsp;}</h3>
+            </code>
+        </div>
+    </div>
+
+</section>
+<section id="demo" class="gray-section features">
+    <div class="container">
+        <div class="row m-b-lg">
+            <div class="col-lg-12 text-center">
+                <div class="navy-line"></div>
+                <h1>
+                    CodeDesk 测试例子下载
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 wow fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;">
+                <a href="https://github.com/guitarpark/CodeDesk.Desktop/releases/tag/firstpre" target="_blank">
+                    <div class="team-member">
+                        <img src="/images/windows.png" class="img-responsive img-circle img-small" alt="Windows 版本">
+                        <h4><span class="navy">Windows 版本下载</span> </h4>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <div class="team-member wow zoomIn animated" style="visibility: visible;">
+                    <img src="/images/iphone.png" class="img-responsive img-circle img-small" alt="macOS 版本">
+                    <h4><span class="navy">macOS 版本</span> 开发中</h4>
+                </div>
+            </div>
+            <div class="col-sm-4 wow fadeInRight animated" style="visibility: visible; animation-name: fadeInRight;">
+                <a href="https://github.com/guitarpark/CodeDesk.Desktop/releases/tag/firstpre" target="_blank">
+                    <div class="team-member">
+                        <img src="/images/linux.png" class="img-responsive img-circle img-small" alt="">
+                        <h4><span class="navy">Linux版本下载</span></h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <p>如果您在使用过程中有什么问题，请及时给我们联系！</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="features">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="navy-line"></div>
+                <h1>
+                    适用于 .NET 和 Blazor 的 CodeDesk
+                </h1>
+                <p>
+                    使用 CodeDesk您可以使用 .NET 后端和您选择的 Web 框架构建桌面应用程序。<br />由于 .NET 是跨平台的，因此它是在任何地方运行的可靠且可重用的代码的完美候选者。<br />
+
+                    CodeDesk的Blazor功能，并添加了无需了解 JavaScript 或 TypeScript 即可生成应用程序的功能。<br />
+                    同时由于没有Electron的NodeJs，所以他是一个干净的，快速的桌面端程序。
+                </p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="timeline gray-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="navy-line"></div>
+                <h1>
+                    关于CodeDesk
+                </h1>
+                <p>
+                    CodeDesk 的灵感来自 Electron和Photino。这是一个基于 .NET 的开源项目。<br />CodeDesk 的目标是使开发人员能够在跨平台的本机应用程序中使用 Web UI（HTML、JavaScript、CSS 等），而不是学习特定于平台的 UI 技术。
+                </p>
+                <p>操作系统Windows 10, Mac 10.15+, or Linux (Ubuntu 18.04+测试通过),openKylin,UOS</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section id="testimonials" class="navy-section testimonials" style="margin-top: 0">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center wow zoomIn">
+                <i class="fa fa-comment"></i>
+                <h1>
+                    CodeDesk是如何工作的？
+
+                </h1>
+                <div class="testimonials-text">
+                    CodeDesk 是可用于不同平台和技术的软件包集合。围绕着操作系统内置的Chromium或基于WebKit的浏览器控件。
+                    在 Windows 上，它使用基于 Chromium Edge 的 WebView2 控件，在 macOS 上，它使用 Safari 的 WKWebView，在 Linux 上，它使用 WebKitGTK+ 2。
+
+                    使用本机浏览器控件可以减少 CodeDesk 应用程序的整体占用空间，因为无需在应用程序中捆绑 WebKit。CodeDesk 是跨平台的，因为应用程序在任何操作系统上都以完全相同的方式与包装器通信。
+                    这意味着开发人员只需要一个代码库即可应用于所有桌面平台。
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<section class="features">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="navy-line"></div>
+                <h1>越来越多的超大功能</h1>
+                <p>我们会坚持不懈的继续努力开发</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-lg-offset-1 features-text">
+                <small>CodeDesk</small>
+                <h2>更小的体积，追求展示效果一致性 </h2>
+                <i class="fa fa-bar-chart big-icon float-right"></i>
+                <p>后续优化浏览器控件，重构Chromium，在三个平台使用同样的浏览器。</p>
+            </div>
+            <div class="col-lg-5 features-text">
+                <small>CodeDesk</small>
+                <h2>功能迭代更新 </h2>
+                <i class="fa fa-bolt big-icon float-right"></i>
+                <p>定期根据用户使用反馈，更新软件功能</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-lg-offset-1 features-text">
+                <small>CodeDesk</small>
+                <h2>完美的Blazor支持 </h2>
+                <i class="fa fa-clock-o big-icon float-right"></i>
+                <p>Blazor作为桌面端软件的优秀展示界面，我们会持续开发，兼容不同的Blazor框架。</p>
+            </div>
+            <div class="col-lg-5 features-text">
+                <small>CodeDesk</small>
+                <h2>完善的企业服务支持 </h2>
+                <i class="fa fa-users big-icon float-right"></i>
+                <p>后续会陆续推出企业服务支持，使得企业可以放心使用。</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section id="contact" class="gray-section contact">
+    <div class="container">
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <p class="m-t-sm">
+                    技术交流群
+                </p>
+                <ul class="list-inline social-icon">
+                    <li class="list-inline-item">
+                        QQ群：882080474
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center m-t-lg m-b-lg">
+                <p><strong>&copy; 厦门市渊博科技有限公司</strong><br /></p>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,104 @@
+@page "/"
+
+@inject Microsoft.JSInterop.IJSRuntime JSRuntime;
+@inject IMessageBox messageBox;
+@inject IFileDialog fileDialog;
+@using CodeDesk.Desktop.Extensions;
+<ul>
+    <li>
+        <button @onclick="@(()=>WindowCommand(SystemCommandType.Maximized))">最大化</button>
+    </li>
+    <li>
+        <button @onclick="@(()=>WindowCommand(SystemCommandType.Minimize))">最小化</button>
+    </li>
+    <li>
+        <button @onclick="@(()=>WindowCommand(SystemCommandType.Restore))">还原</button>
+    </li>
+    <li>
+        <button @onclick="@(()=>WindowCommand(SystemCommandType.Close))">关闭</button>
+    </li>
+    <li class="window-header-drag" style="background:red;width:300px;height:30px;user-select:none;color:white;-webkit-user-select:none;">
+        拖动红色部分
+    </li>
+    <li>
+        <button @onclick="@(()=>messageBox.ShowError(null,"具体提示信息",MessageBoxButton.OKCancel,"自定义提示标题"))">原生对话框</button>
+    </li>
+    <li>
+        <button @onclick="@(()=>messageBox.ShowError(null,"具体错误信息",MessageBoxButton.OKCancel,"自定义错误标题"))">原生错误对话框</button>
+    </li>
+    <li>
+        <button @onclick="@(()=>fileDialog.OpenDirectory("c:\\"))">选择目录</button>
+    </li>
+    <li>
+        <button @onclick="@(()=>fileDialog.OpenFile("d:\\",new Dictionary<string, string>(){{"图片文件","*.jpg"},{"文本文件",".txt"}}))">选择单个文件对话框</button>
+    </li>
+    <li>
+        <button @onclick="@(()=>fileDialog.OpenFiles("d:\\",new Dictionary<string, string>(){{"图片文件","*.jpg"},{"文本文件",".txt"}}))">选择多个文件对话框</button>
+    </li>
+    <li>
+        <button @onclick="@(()=>fileDialog.SaveFile("aaa.jpg","d:\\",new Dictionary<string, string>(){{"图片文件","*.jpg"},{"文本文件",".txt"}}))">保存文件对话框</button>
+    </li>
+    <li>
+        <button @onclick="@(()=>JSRuntime.SystemBroswer("http://www.codedesk.cn"))">系统浏览器</button>
+    </li>
+    <li>
+        <button @onclick="@(()=>JSRuntime.CustomMessage("这里是自定义消息"))">自定义消息</button>
+    </li>
+    <li>
+        浏览器版本：@browserVersion
+    </li>
+    <li>
+        <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+        <p role="status">Current count: @currentCount</p>
+    </li>
+</ul>
+<style>
+    ul {
+        list-style: none;
+    }
+
+        ul li {
+            padding: 5px;
+        }
+</style>
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
+@code {
+    [CascadingParameter] internal ChromelessWindow Parent { get; set; }
+    private string browserVersion;
+    void WindowCommand(SystemCommandType command)
+    {
+        Parent.WindowCommand(command);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+            return;
+        JSRuntime.InitDrag(".window-header-drag");
+
+        await base.OnAfterRenderAsync(firstRender);
+        JSRuntime.RegisterMessage(this, nameof(ReciveMessage));
+
+        JSRuntime.WindowCommand(SystemCommandType.BrowserVersion);
+    }
+    [JSInvokable]
+    public void ReciveMessage(SystemMessageModel message)
+    {
+        if (message.CommandName == SystemCommandType.BrowserVersion.ToString())
+        {
+            browserVersion = message.Data;
+            this.StateHasChanged();
+        }
+        else if (message.CommandName == "ShowError" || message.CommandName == "ShowMessage")
+        {
+            System.Diagnostics.Debug.WriteLine(message.Data);
+        }
+    }
+}

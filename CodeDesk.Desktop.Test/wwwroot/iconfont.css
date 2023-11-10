@@ -1,0 +1,282 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3348547 */
+  src: url('iconfont.ttf?t=1696832304290') format('truetype'),
+       url('iconfont.svg?t=1696832304290#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-minimize:before {
+  content: "\e7c0";
+}
+
+.icon-maximizing:before {
+  content: "\e62b";
+}
+
+.icon-wenhao:before {
+  content: "\e611";
+}
+
+.icon-infomation:before {
+  content: "\e7f7";
+}
+
+.icon-window:before {
+  content: "\e856";
+}
+
+.icon-function:before {
+  content: "\e90e";
+}
+
+.icon-loading:before {
+  content: "\e64f";
+}
+
+.icon-loading1:before {
+  content: "\e891";
+}
+
+.icon-loading2:before {
+  content: "\e756";
+}
+
+.icon-html:before {
+  content: "\e65b";
+}
+
+.icon-eye-fill:before {
+  content: "\e869";
+}
+
+.icon-eye:before {
+  content: "\e78f";
+}
+
+.icon-Checked:before {
+  content: "\e612";
+}
+
+.icon-Enter:before {
+  content: "\e65a";
+}
+
+.icon-restore:before {
+  content: "\e7bf";
+}
+
+.icon-help:before {
+  content: "\e6a3";
+}
+
+.icon-Redo:before {
+  content: "\e652";
+}
+
+.icon-Undo:before {
+  content: "\e739";
+}
+
+.icon-Paste:before {
+  content: "\e906";
+}
+
+.icon-Save:before {
+  content: "\e69f";
+}
+
+.icon-copy:before {
+  content: "\e6f3";
+}
+
+.icon-Cut:before {
+  content: "\e74b";
+}
+
+.icon-DatabaseServer:before {
+  content: "\e600";
+}
+
+.icon-Database:before {
+  content: "\e60b";
+}
+
+.icon-Group:before {
+  content: "\e61d";
+}
+
+.icon-ViewGrid:before {
+  content: "\e62a";
+}
+
+.icon-Table:before {
+  content: "\e7de";
+}
+
+.icon-View:before {
+  content: "\e626";
+}
+
+.icon-Message:before {
+  content: "\e8ce";
+}
+
+.icon-Setting:before {
+  content: "\e8cf";
+}
+
+.icon-Left:before {
+  content: "\e8d0";
+}
+
+.icon-Up:before {
+  content: "\e8d1";
+}
+
+.icon-Right:before {
+  content: "\e8d2";
+}
+
+.icon-Favorite:before {
+  content: "\e8d3";
+}
+
+.icon-Menu:before {
+  content: "\e8d4";
+}
+
+.icon-Search:before {
+  content: "\e8d5";
+}
+
+.icon-Down:before {
+  content: "\e8d6";
+}
+
+.icon-Edit:before {
+  content: "\e8d7";
+}
+
+.icon-Modify:before {
+  content: "\e8d8";
+}
+
+.icon-File:before {
+  content: "\e8d9";
+}
+
+.icon-Category:before {
+  content: "\e8da";
+}
+
+.icon-Delete:before {
+  content: "\e8db";
+}
+
+.icon-Upload:before {
+  content: "\e8dc";
+}
+
+.icon-Download:before {
+  content: "\e8dd";
+}
+
+.icon-close:before {
+  content: "\e8de";
+}
+
+.icon-Filter:before {
+  content: "\e8df";
+}
+
+.icon-ZoomOut:before {
+  content: "\e8e0";
+}
+
+.icon-Export:before {
+  content: "\e8e1";
+}
+
+.icon-ZoomIn:before {
+  content: "\e8e2";
+}
+
+.icon-Lock:before {
+  content: "\e8e3";
+}
+
+.icon-UnLock:before {
+  content: "\e8e4";
+}
+
+.icon-Copy:before {
+  content: "\e8e5";
+}
+
+.icon-Add:before {
+  content: "\e8e6";
+}
+
+.icon-Folder:before {
+  content: "\e8e8";
+}
+
+.icon-Compare:before {
+  content: "\e8e9";
+}
+
+.icon-Import:before {
+  content: "\e8ea";
+}
+
+.icon-Refresh:before {
+  content: "\e8eb";
+}
+
+.icon-Swap:before {
+  content: "\e8ec";
+}
+
+.icon-LoginOut:before {
+  content: "\e8ed";
+}
+
+.icon-Column:before {
+  content: "\e8ee";
+}
+
+.icon-Config:before {
+  content: "\e8ef";
+}
+
+.icon-FullScreen:before {
+  content: "\e8f0";
+}
+
+.icon-ArrowRight:before {
+  content: "\e8f1";
+}
+
+.icon-Return:before {
+  content: "\e8f2";
+}
+
+.icon-Code:before {
+  content: "\e8f3";
+}
+
+.icon-Category1:before {
+  content: "\e8f4";
+}
+
+.icon-Setting1:before {
+  content: "\e8f5";
+}
+
