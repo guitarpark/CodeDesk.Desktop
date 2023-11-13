@@ -1,3 +1,0 @@
-﻿Update to 109.1.18+gf1c41e4+chromium-109.0.5414.120
-778d110
-https://github.com/OutSystems/CefGlue/tree/778d110f7136bc18b333afcd82e42d15c1f73b78
