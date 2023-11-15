@@ -110,9 +110,9 @@ namespace CodeDesk.Desktop
         {
             switch (Platform)
             {
-                case RuntimePlatform.Windows:
+                case RuntimePlatform.macOS:
                     {
-                        var window = new NativeHost.WindowHost.NativeSplashWindow(startupOption, windowOption);
+                        var window = new NativeHost.macOSHost.NativeSplashWindow(startupOption, windowOption);
                         window.Create();
                         return window;
                     }
@@ -124,7 +124,9 @@ namespace CodeDesk.Desktop
                     }
                 default:
                     {
-                        return null;
+                        var window = new NativeHost.WindowHost.NativeSplashWindow(startupOption, windowOption);
+                        window.Create();
+                        return window;
                     }
             }
         }

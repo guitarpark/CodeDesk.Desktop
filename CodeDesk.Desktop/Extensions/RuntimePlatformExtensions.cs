@@ -9,11 +9,11 @@ namespace CodeDesk.Desktop.Extensions
             var platformId = Environment.OSVersion.Platform;
 
             if (platformId == PlatformID.MacOSX)
-                return RuntimePlatform.MacOS;
+                return RuntimePlatform.macOS;
 
             int p = (int)platformId;
             if ((p == 4) || (p == 128))
-                return IsRunningOnMac() ? RuntimePlatform.MacOS : RuntimePlatform.Linux;
+                return IsRunningOnMac() ? RuntimePlatform.macOS : RuntimePlatform.Linux;
 
             return RuntimePlatform.Windows;
         }
@@ -54,6 +54,6 @@ namespace CodeDesk.Desktop.Extensions
     {
         Windows,
         Linux,
-        MacOS,
+        macOS,
     }
 }
