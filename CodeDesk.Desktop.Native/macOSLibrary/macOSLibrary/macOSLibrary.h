@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface macOSLibrary : NSObject
-int hello(void);
+void Create1(void);
 @end

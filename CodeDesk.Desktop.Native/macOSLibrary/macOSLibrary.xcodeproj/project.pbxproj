@@ -74,6 +74,7 @@
 				9C4B63FD2B049A1000971448 /* Headers */,
 				9C4B63FE2B049A1000971448 /* Sources */,
 				9C4B63FF2B049A1000971448 /* Frameworks */,
+				9C4B642D2B04C36200971448 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -115,6 +116,27 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9C4B642D2B04C36200971448 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp -R \"${BUILT_PRODUCTS_DIR}/libmacOSLibrary.dylib\" \"/Users/guitarpark/Desktop/codedesk.desktop/CodeDesk.Desktop/NativeHost/macOSHost/\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9C4B63FE2B049A1000971448 /* Sources */ = {

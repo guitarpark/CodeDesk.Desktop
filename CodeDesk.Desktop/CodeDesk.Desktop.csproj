@@ -27,4 +27,9 @@
 		<PackageReference Include="WebView2.NativeAssets.Win32" Version="1.0.1518.46" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="NativeHost\macOS\libmacOSLibrary.dylib" />
+	  <EmbeddedResource Include="NativeHost\macOSHost\libmacOSLibrary.dylib" />
+	</ItemGroup>
+
 </Project>

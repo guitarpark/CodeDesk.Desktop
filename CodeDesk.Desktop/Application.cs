@@ -51,16 +51,21 @@ namespace CodeDesk.Desktop
             var services = new ServiceCollection();
             switch (Platform)
             {
-                case RuntimePlatform.Windows:
-                    {
-                        services.AddSingleton<IMessageBox,NativeHost.WindowHost.MessageBox>();
-                        services.AddSingleton<IFileDialog, NativeHost.WindowHost.FileDialog>();
-                        break;
-                    }
-                default:
+                case RuntimePlatform.Linux:
                     {
                         services.AddSingleton<IMessageBox, NativeHost.LinuxHost.MessageBox>();
                         services.AddSingleton<IFileDialog, NativeHost.LinuxHost.FileDialog>();
+                        break;
+                    }
+                case RuntimePlatform.macOS:
+                {
+                    services.AddSingleton<IMessageBox, NativeHost.macOSHost.MessageBox>();
+                    break;
+                }
+                default:
+                    {
+                        services.AddSingleton<IMessageBox,NativeHost.WindowHost.MessageBox>();
+                        services.AddSingleton<IFileDialog, NativeHost.WindowHost.FileDialog>();
                         break;
                     }
             }
