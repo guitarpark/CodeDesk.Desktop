@@ -1,13 +1,9 @@
-//
-//  macOSLibrary.h
-//  macOSLibrary
-//
-//  Created by guitarpark on 2023/11/14.
-//  Copyright © 2023 guitarpark. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
 @interface macOSLibrary : NSObject
-void Create1(void);
+NSWindow *Create(int left,int top,int width,int height,bool chromeless,bool center);
+void SetTitle(NSWindow *window,char title[]);
+void Show(NSWindow *window);
+void RunMessageLoop();
 @end
