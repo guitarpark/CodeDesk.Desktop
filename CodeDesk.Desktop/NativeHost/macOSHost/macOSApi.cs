@@ -12,11 +12,19 @@ namespace CodeDesk.Desktop.NativeHost.macOSHost
     {
         internal const string libmacOSLibrary = "libmacOSLibrary.dylib";
         [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
-        internal static extern IntPtr Create(int left, int top, int width, int height, bool chromeless,bool center);
+        internal static extern IntPtr Create(int left, int top, int width, int height, bool chromeless,bool center,bool canResize);
         [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void SetTitle(IntPtr window,IntPtr title);
         [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern void SetBackgroundColor(IntPtr window,IntPtr backgroundColor);
+        [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void Show(IntPtr window);
+        
+        [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern void SetMaxSize(IntPtr window,int width,int height);
+        
+        [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern void SetMinSize(IntPtr window,int width,int height);
         [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void RunMessageLoop();
         public static void LoadNativeHostFile()
