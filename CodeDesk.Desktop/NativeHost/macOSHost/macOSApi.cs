@@ -17,6 +17,12 @@ namespace CodeDesk.Desktop.NativeHost.macOSHost
         internal static extern void SetTitle(IntPtr window,IntPtr title);
         [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void SetBackgroundColor(IntPtr window,IntPtr backgroundColor);
+
+        [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern IntPtr createProgressIndicator(IntPtr window, int left, int top, int width, int height, IntPtr backgroundColor);
+        
+        [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern void setProgressBarValue(IntPtr progressBar,int value);
         [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void Show(IntPtr window);
         
@@ -25,6 +31,9 @@ namespace CodeDesk.Desktop.NativeHost.macOSHost
         
         [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void SetMinSize(IntPtr window,int width,int height);
+        [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern void SetIcon(IntPtr window,IntPtr data);
+        
         [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void RunMessageLoop();
         public static void LoadNativeHostFile()

@@ -37,50 +37,12 @@ namespace CodeDesk.Desktop.NativeHost.macOSHost
             if(MinimumSize.HasValue)
                 macOSApi.SetMaxSize(Handle,MinimumSize.Value.Width,MinimumSize.Value.Height);
             
-            // var windowType = Chromeless ? GtkApi.GtkWindowType.GtkWindowPopup : GtkApi.GtkWindowType.GtkWindowToplevel;
-            // Handle = GtkApi.gtk_window_new((int)windowType);
-            // GtkApi.gtk_window_set_title(Handle, Application.AppName);
-            // GtkApi.gtk_window_set_resizable(Handle, true);
-            //
-            // var iconPtr = Application.FileProvider.GetFileInfo(Application.Icon).CreateReadStream().StreamToByte()
-            //     .GetPixbuf();
-            // GtkApi.gtk_window_set_icon(Handle,
-            //     GtkApi.gdk_pixbuf_scale_simple(iconPtr, 64, 64, GtkApi.GdkInterpType.GDK_INTERP_BILINEAR));
-            // if (Chromeless)
-            //     GtkApi.gtk_window_set_decorated(Handle, true);
-            //
-            // GtkApi.gtk_window_set_default_size(Handle, Size.Width, Size.Height);
-            // //GtkApi.gtk_widget_set_app_paintable(Handle, true);
-            //
-            // GtkApi.gtk_widget_override_background_color(Handle, 0, Application.BackgroundColor.ToGdkRGBAIntPtr());
-            //
-            // if (StartupCenter)
-            // {
-            //     GtkApi.gtk_window_set_position(Handle, (int)GtkApi.GtkWindowPosition.GtkWinPosCenter);
-            // }
-            // else
-            // {
-            //     GtkApi.gtk_window_move(Handle, Left, Top);
-            // }
-            //
-            // var geometry = new GtkApi.GdkGeometry()
-            // {
-            //     min_width = MinimumSize.HasValue?MinimumSize.Value.Width:0,
-            //     min_height = MinimumSize.HasValue?MinimumSize.Value.Height:0,
-            //     max_width = MaximumSize.HasValue?MaximumSize.Value.Width:0,
-            //     max_height = MaximumSize.HasValue?MaximumSize.Value.Height:0
-            // };
-            // GtkApi.gtk_window_set_geometry_hints(Handle, IntPtr.Zero, ref geometry,
-            //     GtkApi.GdkWindowHints.GDK_HINT_MIN_SIZE | GtkApi.GdkWindowHints.GDK_HINT_MAX_SIZE);
-            //
-            // //注册事件
-            // GtkApi.gtk_widget_add_events(Handle,
-            //     (int)(GtkApi.GdkEventMask.PointerMotionMask) |
-            //     (int)(GtkApi.GdkEventMask.ButtonPressMask | GtkApi.GdkEventMask.ButtonReleaseMask));
-            // RegisterHandel(Handle, "button-press-event", new GtkWidgetEventDelegate(OnButtonPressEvent));
-            // RegisterHandel(Handle, "button-release-event", new GtkWidgetEventDelegate(OnButtonReleaseEvent));
-            // RegisterHandel(Handle, "motion-notify-event", new GtkWidgetEventDelegate(OnMotionNotifyEvent));
-            // RegisterHandel(Handle, "leave-notify-event", new GtkWidgetEventDelegate(OnLeaveNotifyEvent));
+            var icon = Application.FileProvider.GetFileInfo(Application.Icon).CreateReadStream().StreamToByte();
+            var _titleHandle = GCHandle.Alloc(icon, GCHandleType.Pinned);
+            var aaa= _titleHandle.AddrOfPinnedObject();
+                
+            macOSApi.SetIcon(Handle,aaa);
+
         }
 
 
@@ -101,7 +63,6 @@ namespace CodeDesk.Desktop.NativeHost.macOSHost
             macOSApi.Show(Handle);
             RunMessageLoop();
         }
-
         internal void RunMessageLoop()
         {
             macOSApi.RunMessageLoop();
