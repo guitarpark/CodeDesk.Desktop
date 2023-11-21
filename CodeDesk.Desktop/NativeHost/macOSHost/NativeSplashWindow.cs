@@ -21,14 +21,19 @@ namespace CodeDesk.Desktop.NativeHost.macOSHost
         public override void Create()
         {
             base.Create();
+           
+           var splash = Application.FileProvider.GetFileInfo(this.Option.Splash).CreateReadStream().StreamToByteIntptr();
+           macOSApi.SetBackgroundImage(Handle,splash.intptr,splash.length);
+           Option.Loading.Color.TomacOSIntptr();
+
            var progressIndicator= macOSApi.createProgressIndicator(Handle, 
                 (Option.Loading.Left),(Option.Size.Height- Option.Loading.Top),
                 Option.Loading.Width, Option.Loading.Height,
                 Option.Loading.Color.TomacOSIntptr());
-           ShowSplashScreen(progressIndicator);
+           ShowLoading(progressIndicator);
         }
         Timer timer;
-        void ShowSplashScreen(IntPtr progressIndicator)
+        void ShowLoading(IntPtr progressIndicator)
         {
             int loadingWidth = 0;
             int loadingInterval = this.Option.Loading.Delayed / 100;
@@ -39,10 +44,13 @@ namespace CodeDesk.Desktop.NativeHost.macOSHost
                 if (loadingWidth >= this.Option.Loading.Width)
                 {
                     timer.Dispose();
+                    
+                    System.Diagnostics.Debug.WriteLine("Close");
                     base.Close();
                 }
                 else
                 {
+                    System.Diagnostics.Debug.WriteLine(loadingWidth);
                     loadingWidth += loadingStepWidth;
                     macOSApi.setProgressBarValue(progressIndicator,loadingWidth);
                 }

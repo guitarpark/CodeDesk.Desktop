@@ -37,11 +37,9 @@ namespace CodeDesk.Desktop.NativeHost.macOSHost
             if(MinimumSize.HasValue)
                 macOSApi.SetMaxSize(Handle,MinimumSize.Value.Width,MinimumSize.Value.Height);
             
-            var icon = Application.FileProvider.GetFileInfo(Application.Icon).CreateReadStream().StreamToByte();
-            var _titleHandle = GCHandle.Alloc(icon, GCHandleType.Pinned);
-            var aaa= _titleHandle.AddrOfPinnedObject();
-                
-            macOSApi.SetIcon(Handle,aaa);
+            var icon = Application.FileProvider.GetFileInfo(Application.Icon).CreateReadStream().StreamToByteIntptr();
+            
+            macOSApi.SetIcon(Handle,icon.intptr,icon.length);
 
         }
 
@@ -70,8 +68,7 @@ namespace CodeDesk.Desktop.NativeHost.macOSHost
 
         public virtual void Close()
         {
-            //GtkApi.gtk_widget_destroy(Handle);
-           // GtkApi.gtk_main_quit();
+            macOSApi.Close(Handle);
         }
 
         public bool CheckAccess()

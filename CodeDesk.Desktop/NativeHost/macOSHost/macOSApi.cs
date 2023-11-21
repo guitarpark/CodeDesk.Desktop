@@ -23,6 +23,9 @@ namespace CodeDesk.Desktop.NativeHost.macOSHost
         
         [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void setProgressBarValue(IntPtr progressBar,int value);
+
+        [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern void SetBackgroundImage(IntPtr window, IntPtr data,int length);
         [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void Show(IntPtr window);
         
@@ -32,10 +35,25 @@ namespace CodeDesk.Desktop.NativeHost.macOSHost
         [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void SetMinSize(IntPtr window,int width,int height);
         [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
-        internal static extern void SetIcon(IntPtr window,IntPtr data);
+        internal static extern void SetIcon(IntPtr window,IntPtr data,int length);
         
         [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void RunMessageLoop();
+        
+        [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern void Close(IntPtr window);
+        
+        [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern  void Exit();
+        
+        [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern void Maximize(IntPtr window);
+        
+        [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern void Restore(IntPtr window);
+        
+        [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern void Minimize(IntPtr window);
         public static void LoadNativeHostFile()
         {
             string resourcePath = $"CodeDesk.Desktop.NativeHost.macOSHost.{libmacOSLibrary}";

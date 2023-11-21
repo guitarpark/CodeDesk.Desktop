@@ -50,6 +50,15 @@ namespace CodeDesk.Desktop.Extensions
             }
         }
 
+        public static (IntPtr intptr,int length) StreamToByteIntptr(this Stream stream)
+        {
+            using (var memoryStream = new System.IO.MemoryStream())
+            {
+                stream.CopyTo(memoryStream);
+                var array = memoryStream.ToArray();
+                return (GCHandle.Alloc(array, GCHandleType.Pinned).AddrOfPinnedObject(),array.Length);
+            }
+        }
         public static IntPtr StructToIntPtr<T>(this T type)
         {
             IntPtr result = Marshal.AllocHGlobal(Marshal.SizeOf(type));
