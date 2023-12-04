@@ -1,43 +1,68 @@
 ﻿using System.Reflection;
+using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
-
 namespace CodeDesk.Desktop.NativeHost.macOSHost
 {
-    internal class NativeSplashWindow :  ISplashWindow
+    internal class NativeSplashWindow : NativeWindowBase, ISplashWindow
     {
-        
-        internal const string libmacOSLibrary = "libmacOSLibrary.dylib";
-        [DllImport(libmacOSLibrary, CallingConvention = CallingConvention.Cdecl)]
-        internal static extern void Create1();
-        
-        public static void LoadNativeHostFile()
-        {
-
-           
-                string resourcePath = $"CodeDesk.Desktop.NativeHost.macOSHost.{libmacOSLibrary}";
-                using var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourcePath);
-                if (resource is not null)
-                {
-                    using var file = new FileStream(libmacOSLibrary, FileMode.Create, FileAccess.Write);
-                    resource.CopyTo(file);
-                }
-        }
+        SplashConfig Option;
+        WindowConfig WindowOption;
         internal NativeSplashWindow(SplashConfig option, WindowConfig windowOption)
         {
+            macOSApi.LoadNativeHostFile();
+            base.Chromeless = false;
+            base.Size = option.Size;
+            base.StartupCenter = true;
+
+            this.Option = option;
+            this.WindowOption = windowOption;
         }
 
-        public void Create()
+        public override void Create()
         {
-            LoadNativeHostFile();
-            Create1();
-        }
+            base.Create();
+           
+           var splash = Application.FileProvider.GetFileInfo(this.Option.Splash).CreateReadStream().StreamToByteIntptr();
+           macOSApi.SetBackgroundImage(Handle,splash.intptr,splash.length);
+           Option.Loading.Color.TomacOSIntptr();
 
-        public void Show()
+           var progressIndicator= macOSApi.createProgressIndicator(Handle, 
+                (Option.Loading.Left),(Option.Size.Height- Option.Loading.Top),
+                Option.Loading.Width, Option.Loading.Height,
+                Option.Loading.Color.TomacOSIntptr());
+           ShowLoading(progressIndicator);
+        }
+        Timer timer;
+        void ShowLoading(IntPtr progressIndicator)
         {
+            int loadingWidth = 0;
+            int loadingInterval = this.Option.Loading.Delayed / 100;
+            int loadingStepWidth = this.Option.Loading.Width / 100;
+
+            timer = new Timer((object state) =>
+            {
+                if (loadingWidth >= this.Option.Loading.Width)
+                {
+                    timer.Dispose();
+                    
+                    System.Diagnostics.Debug.WriteLine("Close");
+                    base.Close();
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine(loadingWidth);
+                    loadingWidth += loadingStepWidth;
+                    macOSApi.setProgressBarValue(progressIndicator,loadingWidth);
+                }
+            }, null, 0, loadingInterval);
+
+        }
+        public override void Show()
+        {
+            base.Show();
         }
         public void Close()
         {
-
         }
     }
 }
